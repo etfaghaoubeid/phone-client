@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getPhones } from "./actions/phone-actions";
+import Layout from "./layout";
 
 function App() {
+  const [phones, setPhones] = useState([]);
+  const phonesStore = useSelector((state) => state.phones);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getPhones());
+    setPhones(phonesStore.phones);
+  }, [dispatch]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      {phonesStore.isLoading ? (
+        <h1>Loading ...</h1>
+      ) : (
+        <div style={{ display: "flex", flexWrap: "wrap" }}>
+          {" "}
+          {phones.map((phone) => (
+            <div>
+              <img
+                src={phone.image}
+                style={{ width: "13rem", height: "16rem" }}
+              />
+              <div>
+                <h3>{phone.name}</h3>
+                <span>{phone.price}</span>
+                <p>{phone.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </Layout>
   );
 }
 
