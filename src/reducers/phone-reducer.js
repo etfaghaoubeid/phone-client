@@ -7,7 +7,7 @@ import {
   FETCH_PHONE_SUCCESS,
 } from "../actions-types/phone-types";
 
-export function phoneReducer(state = {}, action) {
+export function phoneReducer(state = { isLoading: true }, action) {
   switch (action.type) {
     case START_FETCHING_PHONES:
       return {

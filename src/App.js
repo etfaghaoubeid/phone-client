@@ -1,40 +1,17 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getPhones } from "./actions/phone-actions";
+import ProductDetails from "./components/product-details";
 import Layout from "./layout";
+import Home from "./views/home";
+import { Route, Switch } from "react-router-dom";
 
-function App() {
-  const [phones, setPhones] = useState([]);
-  const phonesStore = useSelector((state) => state.phones);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getPhones());
-    setPhones(phonesStore.phones);
-  }, [dispatch]);
+const App = () => {
   return (
-    <Layout>
-      {phonesStore.isLoading ? (
-        <h1>Loading ...</h1>
-      ) : (
-        <div style={{ display: "flex", flexWrap: "wrap" }}>
-          {" "}
-          {phones.map((phone) => (
-            <div>
-              <img
-                src={phone.image}
-                style={{ width: "13rem", height: "16rem" }}
-              />
-              <div>
-                <h3>{phone.name}</h3>
-                <span>{phone.price}</span>
-                <p>{phone.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-    </Layout>
+    <Switch>
+      <Layout>
+        <Route exact path="/" component={Home} />
+        <Route path="/product-details/:id" component={ProductDetails} />
+      </Layout>
+    </Switch>
   );
-}
+};
 
 export default App;

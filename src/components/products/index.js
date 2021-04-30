@@ -1,20 +1,26 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPhones } from "../../actions/phone-actions";
 import ProductCard from "../product-card";
+import { getProducts } from "./products-actions";
+import { ProjectsWrapper } from "./styles";
 const Products = () => {
   const dispatch = useDispatch();
-  const { phones, isLoading } = useSelector((state) => state.phones);
+  const products = useSelector((state) => state.products);
   useEffect(() => {
-    dispatch(getPhones());
-  }, [dispatch]);
+    dispatch(getProducts());
+    console.log(products.products, "1111111111111");
+  }, [dispatch, getProducts]);
   return (
     <>
-      {isLoading ? (
-        <h3>Loading...</h3>
-      ) : (
-        phones.map((item) => <ProductCard key={item.id} phone={item} />)
-      )}
+      <ProjectsWrapper>
+        {products.isLoading ? (
+          <h3>Loading...</h3>
+        ) : (
+          products.products.map((item) => (
+            <ProductCard key={item.id} phone={item} />
+          ))
+        )}
+      </ProjectsWrapper>
     </>
   );
 };

@@ -4,12 +4,18 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import App from "./App";
 import store from "./store";
+import GlobalStyle from "./shared/global-style";
+import { ThemeProvider } from "styled-components";
+import theme from "./shared/theme";
 const Root = () => {
   return (
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <GlobalStyle />
+          <App />
+        </BrowserRouter>
+      </ThemeProvider>
     </Provider>
   );
 };
