@@ -7,6 +7,8 @@ import {
   CardPrice,
   CardLink,
   CardCapacity,
+  CardSection,
+  CardStatus,
 } from "./styles";
 const ProductCard = ({
   phone: { id, capacity, image, price, name, description, used },
@@ -16,18 +18,17 @@ const ProductCard = ({
       <CardLink to={`/product-details/${id}`}>
         <CardImage src={image} />
         <CardBody>
-          <div>
-            <CardDescription>
-              {name.toUpperCase()}:{description.substring(0, 34)}...
-            </CardDescription>
-          </div>
-          <div>
-            <CardPrice>{price} MRU</CardPrice>
-          </div>
-          <div>
+          <CardSection>
+            <CardTitle>{name}</CardTitle>
+          </CardSection>
+
+          <CardSection>
+            <CardPrice>Price: {price} MRU</CardPrice>
+          </CardSection>
+          <CardSection>
             <CardCapacity>Memory: {capacity} GB</CardCapacity>
-          </div>
-          <CardCapacity> Used: {used ? "Yes" : "No"} </CardCapacity>
+            <CardStatus> Used: {used ? "Yes" : "No"} </CardStatus>
+          </CardSection>
         </CardBody>
       </CardLink>
     </CardContainer>

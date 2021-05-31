@@ -1,6 +1,5 @@
 import {
   Navbar,
-  NavContainer,
   NavItemsWrapper,
   NavItems,
   NavItem,
@@ -23,10 +22,10 @@ const Header = () => {
           <NavItemsWrapper>
             <NavItems>
               <NavItem>
-                <NavItemLInk to="/used">Used</NavItemLInk>
+                <NavItemLInk to="/phones">Phones</NavItemLInk>
               </NavItem>
               <NavItem>
-                <NavItemLInk to="/used">Used</NavItemLInk>
+                <NavItemLInk to="/accessoires">Accessoires</NavItemLInk>
               </NavItem>
             </NavItems>
           </NavItemsWrapper>

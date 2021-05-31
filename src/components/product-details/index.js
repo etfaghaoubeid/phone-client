@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getProductDetails } from "./product-details-actions";
 import { DetailsContainer, DetailsImage } from "./styles";
+import Spinner from "../spinner";
 const ProductDetails = (props) => {
   const { id } = props.match.params;
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const ProductDetails = (props) => {
   return (
     <>
       {details.isLoading ? (
-        <h2>Loading ...</h2>
+        <Spinner />
       ) : (
         <DetailsContainer>
           <div>

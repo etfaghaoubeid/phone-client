@@ -1,7 +1,14 @@
+import { SpinnerContainer, SpinnerWrapper } from "./styles";
+
 const Spinner = () => {
   return (
     <>
-      <h3>Loading</h3>
+      <SpinnerContainer>
+        <SpinnerWrapper></SpinnerWrapper>
+        <SpinnerWrapper></SpinnerWrapper>
+        <SpinnerWrapper></SpinnerWrapper>
+        <SpinnerWrapper></SpinnerWrapper>
+      </SpinnerContainer>
     </>
   );
 };
